@@ -1,45 +1,73 @@
-# 调酒名片 ReAct Agent 项目
+# 调酒名片 Agent
 
-这个目录收拢了本次创建或下载的所有项目文件。
+输入酒名、文案或情绪，AI 自主规划并生成鸡尾酒名片——包含配方、文案、视觉 prompt、音乐推荐和名片渲染。
 
-## 目录结构
-
-- `agent/`：鸡尾酒名片生成链路，包括意图、配方、文案、视觉、音乐和模板选择。
-- `runtime/`：自搭 ReAct Runtime，包括工具注册、权限判断、循环执行和终止条件。
-- `tools/`：Runtime 可调用工具，包括素材、图片、音乐、打印、记忆、配方和 skill 查询。
-- `schema/`：Zod 数据结构，包括名片、工具和记忆 schema。
-- `memory/`：当前内存版记忆存储。
-- `llm/`：OpenAI 兼容客户端和提示词入口。
-- `scripts/`：demo 脚本。
-- `tests/`：Vitest 测试。
-- `docs/`：产品设计文档与实施计划。
-- `skills/`：项目内 skill，当前包含 `cocktail-card-assets`。
-- `assets/illustrations/`：非酒类插画/纹理素材副本。
-- `work/`：临时工作目录和下载痕迹。
-
-## 运行
+## 快速开始
 
 ```bash
 npm install
-npm test
-npm run typecheck
-npm run demo:react-runtime
+cp .env.example .env   # 填入 LLM_API_KEY
+npm run dev             # 启动开发服务器 → http://localhost:3000
 ```
 
-## 终端编码
+## 目录结构
 
-项目文件使用 UTF-8。若 PowerShell 直接 `Get-Content` 出现中文乱码，请使用：
-
-```powershell
-Get-Content -LiteralPath README.md -Encoding UTF8
+```
+src/
+├── app/                    # Next.js 页面 + API
+│   ├── page.tsx            #   主页面（移动端）
+│   ├── layout.tsx          #   根布局
+│   └── api/generate/       #   ReAct 生成接口
+├── components/             # React 组件
+│   ├── card-preview.tsx    #   名片预览（分发模板）
+│   ├── export-button.tsx   #   PNG 导出
+│   └── templates/          #   三套名片模板
+│       ├── album-cover.tsx #     图片主导 / 情绪分享
+│       ├── bar-menu.tsx    #     信息主导 / 专业酒单
+│       └── personal-card.tsx#    身份主导 / 活动名片
+├── lib/                    # 通用工具
+│
+├── backend/                # Agent 后端
+│   ├── runtime/            #   ReAct 循环引擎（权限、终止）
+│   ├── tools/              #   可调用工具（素材、生成、记忆、打印…）
+│   ├── agent/              #   调酒业务（意图、配方、文案、模板）
+│   ├── schema/             #   Zod 数据模型
+│   ├── memory/             #   记忆系统
+│   ├── llm/                #   LLM 客户端、决策器、提示词
+│   ├── skills/             #   Skill 系统（12 个 skill + 自动选择）
+│   │   └── defs/           #     Skill 定义（generate / flavor / context）
+│   └── config.ts           #   配置入口
+│
+├── tests/                  # Vitest 测试
+└── scripts/                # CLI demo 脚本
 ```
 
-或先切换输出编码：
+## npm scripts
 
-```powershell
-chcp 65001
+| 命令 | 说明 |
+|---|---|
+| `npm run dev` | 启动 Next.js 开发服务器 |
+| `npm test` | 运行全部测试 |
+| `npm run typecheck` | TypeScript 类型检查 |
+| `npm run demo:generate "描述"` | 命令行生成名片 |
+| `npm run demo:react-loop "描述"` | ReAct 自主循环 demo |
+
+## 技术栈
+
+- **前端**：Next.js 15、React 19、Tailwind CSS、html-to-image
+- **后端**：自建 ReAct Runtime、LLM 决策器
+- **LLM**：DeepSeek（OpenAI 兼容）
+- **校验**：Zod
+- **测试**：Vitest
+
+## ReAct 工作流
+
 ```
+用户输入 → LLM 自主选 skill → LLM 规划 → 选工具 → 执行 → 观察 → 反思 → 循环 → 生成名片
+```
+
+每一步决策由 DeepSeek 根据当前上下文实时做出，非固定流程。生成完成后前端展示完整思考链。
 
 ## 素材规则
 
-素材库禁止酒杯、酒瓶、吧台、调酒师、可见酒饮、倒酒动作和酒类标签。只使用抽象、插画、纹理、几何、雨夜、月光、海面、水果、植物、纸张或织物等非酒类视觉。
+禁止酒杯、酒瓶、吧台、调酒师、可见酒饮、倒酒动作和酒类标签。只使用抽象、插画、纹理、几何、雨夜、月光、海面、水果、植物、纸张或织物等非酒类视觉。
