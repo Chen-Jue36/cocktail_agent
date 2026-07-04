@@ -25,9 +25,9 @@ describe("decideNextAction", () => {
       ],
     })
 
-    const { decideNextAction } = await import("../../llm/decider")
-    const { createAgentRun, createRuntime, registerTool } = await import("../../runtime/runtime")
-    const { createAssetSearchTool } = await import("../../tools/assets")
+    const { decideNextAction } = await import("@/backend/llm/decider")
+    const { createAgentRun, createRuntime, registerTool } = await import("@/backend/runtime/runtime")
+    const { createAssetSearchTool } = await import("@/backend/tools/assets")
 
     const runtime = createRuntime({ maxSteps: 8 })
     registerTool(
@@ -75,8 +75,8 @@ describe("decideNextAction", () => {
       ],
     })
 
-    const { decideNextAction } = await import("../../llm/decider")
-    const { createAgentRun, createRuntime } = await import("../../runtime/runtime")
+    const { decideNextAction } = await import("@/backend/llm/decider")
+    const { createAgentRun, createRuntime } = await import("@/backend/runtime/runtime")
 
     const runtime = createRuntime({ maxSteps: 8 })
     const run = createAgentRun("为雨夜黑樱桃爵士酒会制作调酒名片", {

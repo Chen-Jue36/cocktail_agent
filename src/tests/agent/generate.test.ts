@@ -57,7 +57,7 @@ describe("generateCocktailCard", () => {
       choices: [{ message: { content: JSON.stringify(validResponse) } }],
     })
 
-    const { generateCocktailCard } = await import("../../agent/generate")
+    const { generateCocktailCard } = await import("@/backend/agent/generate")
 
     const { card } = await generateCocktailCard("雨夜黑樱桃")
 
@@ -77,14 +77,14 @@ describe("generateCocktailCard", () => {
       choices: [{ message: { content: "```json\n" + JSON.stringify(validResponse) + "\n```" } }],
     })
 
-    const { generateCocktailCard } = await import("../../agent/generate")
+    const { generateCocktailCard } = await import("@/backend/agent/generate")
 
     const { card } = await generateCocktailCard("test")
     expect(card.name).toBe("雨夜黑樱桃")
   })
 
   it("拒绝空输入", async () => {
-    const { generateCocktailCard } = await import("../../agent/generate")
+    const { generateCocktailCard } = await import("@/backend/agent/generate")
     await expect(generateCocktailCard("   ")).rejects.toThrow("请输入")
   })
 
@@ -93,7 +93,7 @@ describe("generateCocktailCard", () => {
       choices: [{ message: { content: JSON.stringify(validResponse) } }],
     })
 
-    const { generateCocktailCard } = await import("../../agent/generate")
+    const { generateCocktailCard } = await import("@/backend/agent/generate")
 
     const { card } = await generateCocktailCard("酸酸的夏日酒", {
       skills: { flavors: ["flavor-sour"] },

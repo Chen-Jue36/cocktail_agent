@@ -41,9 +41,11 @@ export async function generateCocktailCard(
   let skillReason = ""
 
   if (options?.skills === "auto") {
+    console.log("\n===== Skill 选择 =====")
     const selection = await selectSkills(input)
     skills = { generate: selection.generate, flavors: selection.flavors, contexts: selection.contexts }
     skillReason = selection.reason
+    console.log("=======================\n")
   } else {
     skills = { ...defaults, ...options?.skills }
     skillReason = "手动指定。"
@@ -61,10 +63,12 @@ export async function generateCocktailCard(
     temperature: 0.7,
   })
 
+  console.log("[generate] tokens:", JSON.stringify(response.usage))
   const raw = response.choices[0]?.message?.content
   if (!raw) {
     throw new Error("模型没有返回内容。")
   }
+  console.log("[generate] raw response (first 300 chars):", raw.slice(0, 300))
 
   let parsed: unknown
   try {

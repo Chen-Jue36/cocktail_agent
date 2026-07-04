@@ -46,13 +46,18 @@ export async function selectSkills(input: string): Promise<SkillSelection & { re
   })
 
   const raw = response.choices[0]?.message?.content
-  if (!raw) return { ...defaults, reason: "模型无响应，使用默认。" }
+  if (!raw) {
+    console.log("[selectSkills] LLM empty response, using defaults")
+    return { ...defaults, reason: "模型无响应，使用默认。" }
+  }
+
+  console.log("[selectSkills] LLM raw:", raw)
 
   try {
     const parsed = JSON.parse(raw)
     const validIds = new Set(all.map((s) => s.id))
 
-    return {
+    const result = {
       generate: validIds.has(parsed.generate) ? parsed.generate : defaults.generate,
       flavors: (Array.isArray(parsed.flavors) ? parsed.flavors : []).filter((id: string) =>
         validIds.has(id),
@@ -62,7 +67,11 @@ export async function selectSkills(input: string): Promise<SkillSelection & { re
       ),
       reason: typeof parsed.reason === "string" ? parsed.reason : "自动选择。",
     }
+
+    console.log("[selectSkills] selected:", JSON.stringify(result))
+    return result
   } catch {
+    console.log("[selectSkills] parse failed, using defaults")
     return { ...defaults, reason: "解析失败，使用默认。" }
   }
 }

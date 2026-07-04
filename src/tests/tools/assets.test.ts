@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { createAssetSearchTool, loadAssetIndex } from "../../tools/assets"
+import { createAssetSearchTool, loadAssetIndex } from "@/backend/tools/assets"
 
 const indexPath = "../.claude/skills/cocktail-card-assets/references/asset-index.md"
 

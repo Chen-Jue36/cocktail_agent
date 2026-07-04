@@ -1,5 +1,5 @@
-import { createAssetSearchTool } from "../tools/assets"
-import { createAgentRun, createRuntime, registerTool } from "../runtime/runtime"
+import { createAssetSearchTool } from "@/backend/tools/assets"
+import { createAgentRun, createRuntime, registerTool } from "@/backend/runtime/runtime"
 
 async function main() {
   const runtime = createRuntime({ maxSteps: 6 })

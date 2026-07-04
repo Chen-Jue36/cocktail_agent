@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest"
-import { listSkills, getSkill, buildSystemPrompt } from "../../skills"
+import { listSkills, getSkill, buildSystemPrompt } from "@/backend/skills"
 
 describe("skill loader", () => {
   it("加载所有 generate 类 skill", () => {

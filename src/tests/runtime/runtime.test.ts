@@ -5,7 +5,7 @@ import {
   registerTool,
   shouldAllowTool,
   type AgentTool
-} from "../../runtime/runtime"
+} from "@/backend/runtime/runtime"
 
 const safeTool: AgentTool = {
   id: "asset.search",

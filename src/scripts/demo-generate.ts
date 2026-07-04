@@ -1,4 +1,4 @@
-import { generateCocktailCard } from "../agent/generate"
+import { generateCocktailCard } from "@/backend/agent/generate"
 
 const input = process.argv[2] || "雨夜、黑樱桃、爵士酒会，低调奢华"
 const mode = process.argv[3] || "auto"
