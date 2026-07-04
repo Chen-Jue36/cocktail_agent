@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="Abstract tropical event pattern">
+  <rect width="1200" height="1500" fill="#12332f"/>
+  <g opacity="0.95">
+    <path d="M180 180c180 110 250 250 200 420-160-65-250-200-200-420z" fill="#2fbf71"/>
+    <path d="M970 80c-210 120-290 300-240 520 185-75 295-250 240-520z" fill="#88d66c"/>
+    <path d="M220 1020c230-130 390-95 520 110-190 90-360 60-520-110z" fill="#f6bf45"/>
+    <path d="M840 940c-160 150-185 305-70 460 145-125 170-280 70-460z" fill="#f0674f"/>
+  </g>
+  <g fill="none" stroke="#fff2c2" stroke-width="10" stroke-linecap="round" opacity="0.34">
+    <path d="M210 240c80 90 120 190 125 300"/>
+    <path d="M920 150c-95 110-140 240-140 390"/>
+    <path d="M300 1080c120 40 240 58 360 50"/>
+    <path d="M815 1020c-50 120-60 230-25 330"/>
+  </g>
+  <g opacity="0.22" fill="#fff7eb">
+    <circle cx="120" cy="760" r="34"/>
+    <circle cx="1080" cy="720" r="24"/>
+    <circle cx="640" cy="300" r="18"/>
+    <circle cx="500" cy="1360" r="26"/>
+  </g>
+</svg>

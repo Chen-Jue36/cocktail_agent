@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="Abstract citrus geometry">
+  <rect width="1200" height="1500" fill="#f6f0df"/>
+  <g opacity="0.95">
+    <circle cx="300" cy="330" r="210" fill="#f4c84a"/>
+    <circle cx="300" cy="330" r="130" fill="#f6f0df" opacity="0.35"/>
+    <path d="M300 120v420M90 330h420M150 180l300 300M450 180 150 480" stroke="#fff7cf" stroke-width="18"/>
+  </g>
+  <g opacity="0.92">
+    <circle cx="870" cy="760" r="260" fill="#94b86a"/>
+    <circle cx="870" cy="760" r="160" fill="#f6f0df" opacity="0.25"/>
+    <path d="M870 500v520M610 760h520M690 580l360 360M1050 580 690 940" stroke="#dbe8b8" stroke-width="20"/>
+  </g>
+  <rect x="120" y="1070" width="960" height="220" fill="#101820" opacity="0.08"/>
+  <path d="M0 1320c230-60 390-60 620 0s360 55 580-15v195H0z" fill="#f0dd8d" opacity="0.8"/>
+  <g fill="#24352f" opacity="0.18">
+    <rect x="92" y="96" width="84" height="84"/>
+    <rect x="996" y="210" width="56" height="56"/>
+    <rect x="210" y="830" width="44" height="44"/>
+    <rect x="940" y="1190" width="80" height="80"/>
+  </g>
+</svg>
